@@ -1,0 +1,97 @@
+.main_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  background-image: url("../../assets/images/bgimg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  width: 100vw;
+  font-size: 120%;
+}
+
+.searchbar {
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 24px;
+  background: #7c7c7c2b;
+  color: white;
+  font-family: inherit;
+  font-size: 105%;
+  width: 40vw;
+}
+
+.header {
+  height: 10vh;
+  text-transform: uppercase;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.header h1 {
+  background: -webkit-linear-gradient(#abb0bf7a, #109cc3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search {
+  height: 20vh;
+}
+
+.data {
+  height: 70vh;
+  width: 80vw;
+  overflow: scroll;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.tablehead {
+  cursor: pointer;
+  background-color: rgba(82, 168, 208, 0.6);
+  width: 20vw;
+  padding: 1rem 0;
+}
+
+.tablerow {
+  height: 2.5rem;
+}
+
+.data::-webkit-scrollbar {
+  display: none;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width:500px) {
+  .header h1 {
+    font-size: 1.8rem;
+    background: -webkit-linear-gradient(#abb0bff2, #109cc3);
+    -webkit-background-clip: text;
+  }
+
+  .searchbar {
+    border-radius: 24px;
+    font-size: 90%;
+    width: 60vw;
+  }
+
+  .tablehead {
+    cursor: pointer;
+    background-color: rgba(82, 168, 208, 0.6);
+    width: 15vw;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  .tablerow {
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+}

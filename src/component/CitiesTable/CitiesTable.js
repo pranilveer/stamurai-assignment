@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styles from "./CitiesTable.module.css"
 
 const CitiesTable = () => {
   const [cities, setCities] = useState([]);
@@ -43,17 +45,17 @@ const CitiesTable = () => {
 
   const sortedCities = sortedColumn
     ? [...cities].sort((a, b) => {
-        const columnA = a[sortedColumn].toLowerCase();
-        const columnB = b[sortedColumn].toLowerCase();
+      const columnA = a[sortedColumn].toLowerCase();
+      const columnB = b[sortedColumn].toLowerCase();
 
-        if (columnA < columnB) {
-          return sortDirection === 'asc' ? -1 : 1;
-        }
-        if (columnA > columnB) {
-          return sortDirection === 'asc' ? 1 : -1;
-        }
-        return 0;
-      })
+      if (columnA < columnB) {
+        return sortDirection === 'asc' ? -1 : 1;
+      }
+      if (columnA > columnB) {
+        return sortDirection === 'asc' ? 1 : -1;
+      }
+      return 0;
+    })
     : cities;
 
   const filteredCities = sortedCities.filter(city =>
@@ -61,35 +63,47 @@ const CitiesTable = () => {
   );
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search city..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('name')}>City Name</th>
-              <th onClick={() => handleSort('cou_name_en')}>Country</th>
-              <th onClick={() => handleSort('timezone')}>Timezone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredCities.map(city => (
-              <tr key={city.geoname_id}>
-                <td>{city.name}</td>
-                <td>{city.cou_name_en}</td>
-                <td>{city.timezone}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div className={styles.main_body}>
+      <div className={styles.header}>
+        <h1>Infinite scroll</h1>
+      </div>
+      <div className={styles.search}>
+        <input
+          type="text"
+          placeholder="Search city..."
+          value={searchTerm}
+          className={styles.searchbar}
+          onChange={handleSearchChange}
+        />
+      </div>
+
+      <div className={styles.data}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className={styles.datainfo}>
+            <table>
+              <thead>
+                <tr>
+                  <th className={styles.tablehead} onClick={() => handleSort('name')}>City Name</th>
+                  <th className={styles.tablehead} onClick={() => handleSort('cou_name_en')}>Country</th>
+                  <th className={styles.tablehead} onClick={() => handleSort('timezone')}>Timezone</th>
+                </tr>
+              </thead>
+              <tbody className={styles.tablebody}>
+                {filteredCities.map(city => (
+                  <tr key={city.geoname_id} className={styles.tablerow}>
+                    <td><Link to={`/weather/${city.name}`}>{city.name}</Link>
+                    </td>
+                    <td>{city.cou_name_en}</td>
+                    <td>{city.timezone}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
