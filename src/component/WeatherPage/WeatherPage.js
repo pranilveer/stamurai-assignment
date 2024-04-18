@@ -20,12 +20,12 @@ const WeatherPage = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching weather data:', error);
-                setLoading(false); // Set loading to false in case of an error
+                setLoading(false);
             }
         };
 
         fetchWeatherData();
-    }, [cityName, apiKey]); // Ensure apiKey is included in dependencies array
+    }, [cityName, apiKey]);
 
     const kelvinToCelsius = kelvin => kelvin - 273.15;
 
